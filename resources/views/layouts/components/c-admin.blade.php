@@ -15,7 +15,7 @@
         </a>
     </li>
     <li class="sidebar-item  {{ $set_active == 'users' ? 'active' : '' }}">
-        <a href="{{ url('dashboard/users') }}" class='sidebar-link'>
+        <a href="{{ url('master-letters') }}" class='sidebar-link'>
             <i class="icon dripicons dripicons-archive"></i>
             <span>Surat</span>
         </a>

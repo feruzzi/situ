@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PagesController::class, 'index']);
+Route::get('/dashboard', [PagesController::class, 'index']);
+Route::get('/master-letters', [PagesController::class, 'master_letters']);

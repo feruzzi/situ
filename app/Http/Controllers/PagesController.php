@@ -12,4 +12,10 @@ class PagesController extends Controller
             'set_active' => 'Dashboard'
         ]);
     }
+    public function master_letters()
+    {
+        return view('dashboard/master_letters', [
+            'set_active' => 'master_letters'
+        ]);
+    }
 }
