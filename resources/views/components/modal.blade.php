@@ -17,7 +17,7 @@
                     <i class="bx bx-x d-block d-sm-none"></i>
                     <span class="d-none d-sm-block">Close</span>
                 </button>
-                <button type="button" class="btn btn-{{ $class }} ml-1" data-bs-dismiss="modal">
+                <button type="submit" class="btn btn-{{ $class }} ml-1">
                     <i class="bx bx-check d-block d-sm-none"></i>
                     <span class="d-none d-sm-block">{{ $modal_action }}</span>
                 </button>

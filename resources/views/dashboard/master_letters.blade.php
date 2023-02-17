@@ -51,10 +51,10 @@
             </div>
         </div>
     </section>
-    <x-modal id="primary" class="primary">
-        <x-slot name="modal_title">Tambah Jenis Surat Baru</x-slot>
-        <x-slot name="modal_body">
-            <form action="{{ url('master-letter/add') }}">
+    <form action="{{ url('api/master-letter/store') }}" method="post">
+        <x-modal id="primary" class="primary">
+            <x-slot name="modal_title">Tambah Jenis Surat Baru</x-slot>
+            <x-slot name="modal_body">
                 <div class="row">
                     <div class="col-sm-12 mb-3">
                         <label for="letter_id">ID Surat</label>
@@ -71,10 +71,10 @@
                         </select>
                     </div>
                 </div>
-            </form>
-        </x-slot>
-        <x-slot name="modal_action">
-            lanjut
-        </x-slot>
-    </x-modal>
+            </x-slot>
+            <x-slot name="modal_action">
+                lanjut
+            </x-slot>
+        </x-modal>
+    </form>
 @endsection
