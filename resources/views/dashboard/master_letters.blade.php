@@ -223,8 +223,8 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <select class="form-control" name="letter_type" id="letter_type_edit">
-                        <option value="0">Surat Masuk</option>
-                        <option value="1">Surat Keluar</option>
+                        <option value="Surat Masuk">Surat Masuk</option>
+                        <option value="Surat Keluar">Surat Keluar</option>
                     </select>
                 </div>
             </div>

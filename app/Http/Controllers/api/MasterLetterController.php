@@ -36,7 +36,7 @@ class MasterLetterController extends Controller
             'letter_name' => 'required|min:5',
         ], [
             'letter_id.required' => 'ID Surat Harus diisi',
-            'letter_id.required' => 'ID Surat Sudah digunakan',
+            'letter_id.unique' => 'ID Surat Sudah digunakan',
             'letter_name.required' => 'Nama Surat Harus diisi',
             'letter_name.min' => 'Nama Surat Minimal 5 karakter',
         ]);
