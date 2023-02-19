@@ -31,6 +31,15 @@ class MasterLetterController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'letter_id' => 'required|unique:master_letters',
+            'letter_name' => 'required|min:5',
+        ], [
+            'letter_id.required' => 'ID Surat Harus diisi',
+            'letter_id.required' => 'ID Surat Sudah digunakan',
+            'letter_name.required' => 'Nama Surat Harus diisi',
+            'letter_name.min' => 'Nama Surat Minimal 5 karakter',
+        ]);
         $data = [
             'letter_id' => $request->letter_id,
             'letter_name' => $request->letter_name,
@@ -70,25 +79,25 @@ class MasterLetterController extends Controller
      */
     public function update(Request $request, MasterLetter $masterLetter, $id)
     {
-        try {
-            MasterLetter::findOrFail($id);
-            $data = [
-                'letter_name' => $request->letter_name,
-                'letter_type' => $request->letter_type
-            ];
-            MasterLetter::where('id', $id)->update($data);
-            return response()->json([
-                'status' => 200,
-                'message' => 'Data Bershasil diupdate',
-                'data' => $data
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 500,
-                'message' => "Terjadi Kesalahan",
-                'data' => null
-            ]);
-        }
+        MasterLetter::findOrFail($id);
+        $this->validate($request, [
+            'letter_id' => 'required|exists:master_letters',
+            'letter_name' => 'required|min:5',
+        ], [
+            'letter_id.exists' => 'ID Tidak ditemukan',
+            'letter_name.required' => 'Nama Surat Harus diisi',
+            'letter_name.min' => 'Nama Surat Minimal 5 karakter',
+        ]);
+        $data = [
+            'letter_name' => $request->letter_name,
+            'letter_type' => $request->letter_type
+        ];
+        MasterLetter::where('id', $id)->update($data);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Data Bershasil diupdate',
+            'data' => $data
+        ]);
     }
 
     /**

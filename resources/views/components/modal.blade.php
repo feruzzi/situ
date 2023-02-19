@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-{{ $class }}">
-                <h5 class="modal-title white" id="myModalLabel160">{{ $modal_title }}
+                <h5 class="modal-title white" id="modal-title">{{ $modal_title }}
                 </h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <i data-feather="x"></i>
@@ -17,7 +17,7 @@
                     <i class="bx bx-x d-block d-sm-none"></i>
                     <span class="d-none d-sm-block">Close</span>
                 </button>
-                <button type="submit" class="btn btn-{{ $class }} ml-1">
+                <button type="submit" class="btn btn-{{ $class }} ml-1" {{ $fnc }}>
                     <i class="bx bx-check d-block d-sm-none"></i>
                     <span class="d-none d-sm-block">{{ $modal_action }}</span>
                 </button>
