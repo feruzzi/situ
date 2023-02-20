@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', [PagesController::class, 'index']);
 Route::get('/master-letters', [PagesController::class, 'master_letters']);
+Route::get('/master-items', [PagesController::class, 'master_items']);
 Route::get('/letters/{type}/{id}', [PagesController::class, 'letters']);

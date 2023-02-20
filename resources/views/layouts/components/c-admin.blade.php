@@ -20,8 +20,8 @@
             <span>Surat</span>
         </a>
     </li>
-    <li class="sidebar-item  {{ $set_active == 'users' ? 'active' : '' }}">
-        <a href="{{ url('dashboard/users') }}" class='sidebar-link'>
+    <li class="sidebar-item  {{ $set_active == 'master-items' ? 'active' : '' }}">
+        <a href="{{ url('master-items') }}" class='sidebar-link'>
             <i class="icon dripicons dripicons-tag"></i>
             <span>Barang</span>
         </a>

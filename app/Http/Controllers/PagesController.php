@@ -38,4 +38,14 @@ class PagesController extends Controller
             'out_letters' => MasterLetter::where('letter_type', 'Surat Keluar')->get(),
         ]);
     }
+    public function master_items()
+    {
+        return view('dashboard/master_items', [
+            'set_active' => 'master_items',
+            'type' => "",
+            'letter' => "",
+            'in_letters' => MasterLetter::where('letter_type', 'Surat Masuk')->get(),
+            'out_letters' => MasterLetter::where('letter_type', 'Surat Keluar')->get(),
+        ]);
+    }
 }
