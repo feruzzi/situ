@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('log_id')->unique();
             $table->string('item_id');
+            $table->string('description')->nullable();
             $table->integer('qty');
             $table->date('date_start');
             $table->date('date_end');
