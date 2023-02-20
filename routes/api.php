@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\MasterLetterController;
+use App\Http\Controllers\api\LetterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,10 @@ Route::get('master-letter/show/{id}', [MasterLetterController::class, 'show']);
 Route::get('master-letter/edit/{id}', [MasterLetterController::class, 'edit']);
 Route::put('master-letter/update/{id}', [MasterLetterController::class, 'update']);
 Route::delete('master-letter/destroy/{id}', [MasterLetterController::class, 'destroy']);
+Route::get('letter/{id}', [LetterController::class, 'index']);
+Route::post('letter/store', [LetterController::class, 'store']);
+Route::get('letter/show/{id}', [LetterController::class, 'show']);
+Route::get('letter/edit/{id}', [LetterController::class, 'edit']);
+Route::put('letter/update/{id}', [LetterController::class, 'update']);
+Route::post('letter/upload/{id}', [LetterController::class, 'upload']);
+Route::delete('letter/destroy/{id}', [LetterController::class, 'destroy']);

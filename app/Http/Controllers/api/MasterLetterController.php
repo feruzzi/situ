@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\MasterLetter;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MasterLetterController extends Controller
@@ -15,7 +16,9 @@ class MasterLetterController extends Controller
      */
     public function index()
     {
-        $data = MasterLetter::all();
+        $username = User::where('username', 'test')->first();
+        $company_id = $username->companies->company_id;
+        $data = MasterLetter::where('company_id', $company_id)->get();
         return response()->json([
             'status' => 200,
             'message' => "Data ditemukan",
@@ -31,6 +34,8 @@ class MasterLetterController extends Controller
      */
     public function store(Request $request)
     {
+        $username = User::where('username', 'test')->first();
+        $company_id = $username->companies->company_id;
         $this->validate($request, [
             'letter_id' => 'required|unique:master_letters',
             'letter_name' => 'required|min:5',
@@ -43,7 +48,9 @@ class MasterLetterController extends Controller
         $data = [
             'letter_id' => $request->letter_id,
             'letter_name' => $request->letter_name,
-            'letter_type' => $request->letter_type
+            'letter_type' => $request->letter_type,
+            'username' => $username->username,
+            'company_id' => $company_id,
         ];
         MasterLetter::create($data);
         return response()->json([
