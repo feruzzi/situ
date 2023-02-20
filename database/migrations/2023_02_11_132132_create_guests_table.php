@@ -17,6 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('group')->nullable();
+            $table->string('username');
+            $table->foreign('username')->references('username')->on('users');
+            $table->string('company_id');
+            $table->foreign('company_id')->references('company_id')->on('companies');
             $table->timestamps();
         });
     }

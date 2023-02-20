@@ -16,13 +16,18 @@ return new class extends Migration
         Schema::create('letters', function (Blueprint $table) {
             $table->id();
             $table->string('letter_code')->unique();
+            $table->string('letter_id');
             $table->string('title');
             $table->date('date_created');
             $table->text('description')->nullable();
             $table->string('from')->nullable();
             $table->string('to')->nullable();
-            $table->string('letter_id')->reference('letter_id')->on('master_letters');
+            $table->foreign('letter_id')->references('letter_id')->on('master_letters');
             $table->string('file_path')->nullable();
+            $table->string('username');
+            $table->foreign('username')->references('username')->on('users');
+            $table->string('company_id');
+            $table->foreign('company_id')->references('company_id')->on('companies');
             $table->timestamps();
         });
     }

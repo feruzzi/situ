@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->string('role');
-            $table->string('company');
+            $table->string('status');
+            $table->string('company_id');
+            $table->foreign('company_id')->references('company_id')->on('companies');
             $table->rememberToken();
             $table->timestamps();
         });

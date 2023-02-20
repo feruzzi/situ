@@ -15,13 +15,17 @@ return new class extends Migration
     {
         Schema::create('item_logs', function (Blueprint $table) {
             $table->id();
-            $table->string('log_id');
-            $table->string('item_id')->references('item_id')->on('master_items');
+            $table->string('log_id')->unique();
+            $table->string('item_id');
             $table->integer('qty');
             $table->date('date_start');
             $table->date('date_end');
-            $table->string('officer')->references('username')->on('users');
+            $table->string('officer');
             $table->string('guest');
+            $table->foreign('item_id')->references('item_id')->on('items');
+            $table->foreign('officer')->references('username')->on('users');
+            $table->string('company_id');
+            $table->foreign('company_id')->references('company_id')->on('companies');
             $table->timestamps();
         });
     }
