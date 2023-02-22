@@ -14,16 +14,18 @@ class Modal extends Component
     public $id;
     public $class;
     public $fnc;
+    public $size;
     /**
      * Create a new component instance.
      * @param  string  $id
      * @return void
      */
-    public function __construct($id,$class,$fnc)
+    public function __construct($id, $class, $fnc, $size = "")
     {
         $this->id = $id;
         $this->class = $class;
         $this->fnc = $fnc;
+        $this->size = $size;
     }
 
     /**
