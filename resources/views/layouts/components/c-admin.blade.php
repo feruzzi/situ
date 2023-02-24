@@ -59,7 +59,7 @@
     <hr>
     <li class="sidebar-title">Barang</li>
     <li class="sidebar-item {{ $set_active == 'cities' ? 'active' : '' }}">
-        <a href="{{ url('dashboard/cities') }}" class='sidebar-link'>
+        <a href="{{ url('item-out') }}" class='sidebar-link'>
             <i class="icon dripicons dripicons-enter"></i>
             <span>Barang Keluar</span>
         </a>
