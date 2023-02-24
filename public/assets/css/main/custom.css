@@ -1717,3 +1717,15 @@ a.ui-button:active,
 .choices__list--dropdown .choices__item--selectable.is-highlighte {
     background-color: #ffffff11;
 }
+.del-list {
+    cursor: pointer;
+    color: rgb(153, 0, 0);
+}
+.del-list:hover {
+    transform: scale(1.3);
+    color: red;
+    -webkit-transform: scale(1.3);
+    -moz-transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    -o-transform: scale(1.3);
+}
