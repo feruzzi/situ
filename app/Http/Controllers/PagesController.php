@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MasterLetter;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -46,6 +47,17 @@ class PagesController extends Controller
             'letter' => "",
             'in_letters' => MasterLetter::where('letter_type', 'Surat Masuk')->get(),
             'out_letters' => MasterLetter::where('letter_type', 'Surat Keluar')->get(),
+        ]);
+    }
+    public function item_outs()
+    {
+        return view('dashboard/item_outs', [
+            'set_active' => 'item_out',
+            'type' => "",
+            'letter' => "",
+            'in_letters' => MasterLetter::where('letter_type', 'Surat Masuk')->get(),
+            'out_letters' => MasterLetter::where('letter_type', 'Surat Keluar')->get(),
+            'items' => Item::where('company_id', 'test')->get()
         ]);
     }
 }

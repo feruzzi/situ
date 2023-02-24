@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\MasterLetterController;
 use App\Http\Controllers\api\LetterController;
+use App\Http\Controllers\api\ItemLogController;
 use App\Http\Controllers\api\ItemController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,3 +41,6 @@ Route::post('master-item/store', [ItemController::class, 'store']);
 Route::get('master-item/show/{id}', [ItemController::class, 'show']);
 Route::put('master-item/update/{id}', [ItemController::class, 'update']);
 Route::delete('master-item/destroy/{id}', [ItemController::class, 'destroy']);
+
+Route::get('item-log', [ItemLogController::class, 'index']);
+Route::post('item/store-out', [ItemLogController::class, 'store_item_out']);
