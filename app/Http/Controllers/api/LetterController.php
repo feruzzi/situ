@@ -135,9 +135,11 @@ class LetterController extends Controller
         // dd($request);
         $username = User::where('username', 'test')->first();
         $company_id = $username->companies->company_id;
-        $company_name = $username->companies->company_name;
+        $company_name = trim($username->companies->company_name);
+        $company_name = str_replace(' ', '_', $company_name);
         $file = $request->file('file_path');
-        $filename = $company_name . "-" . $company_id . "/" . time() . "-" . $file->getClientOriginalName();
+        $original_name = str_replace(' ', '_', $file->getClientOriginalName());
+        $filename = $company_name . "-" . $company_id . "/" . time() . "-" . $original_name;
         $file->move(public_path('uploads/' . $company_name . "-" . $company_id), $filename);
         Letter::where('id', $id)->update([
             'file_path' => $filename
