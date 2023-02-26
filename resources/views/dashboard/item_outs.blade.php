@@ -13,6 +13,8 @@
         <script src="{{ asset('assets/js/toast.js') }}"></script>
         <script>
             var table = $('#item-outs').DataTable({
+                // processing: true,
+                // serverSide: true,
                 autoWidth: false,
                 columnDefs: [{
                     searchable: false,
@@ -32,19 +34,21 @@
                         data: 'log_id',
                     },
                     {
-                        data: 'item_id',
+                        data: 'date_start'
                     },
                     {
                         data: null,
                         render: function(data) {
-                            return `${data.items.name}`
+                            var x = [];
+                            data.list_items.map((curr, i) => {
+                                x[i] =
+                                    `<span class="badge bg-secondary">${curr.items.name} @${curr.qty} ${curr.items.unit}</span>`
+                            })
+                            return x;
                         }
                     },
                     {
-                        data: 'qty',
-                    },
-                    {
-                        data: 'guest'
+                        data: 'description'
                     },
                     {
                         data: null,
@@ -145,6 +149,8 @@
                     url: "{{ url('api/item/store-out') }}",
                     data: {
                         items: items,
+                        date_start: $("#date_start").val(),
+                        description: $("#description").val(),
                     },
                     success: function(res) {
                         console.log(res);
@@ -251,10 +257,9 @@
                     <thead>
                         <th>No.</th>
                         <th>ID Nomor</th>
-                        <th>ID Barang</th>
-                        <th>Nama Barang</th>
-                        <th>Qty</th>
-                        <th>Keperluan</th>
+                        <th>Tanggal</th>
+                        <th>List Barang</th>
+                        <th>Keterangan</th>
                         <th>Aksi</th>
                     </thead>
                     <tbody>
@@ -268,6 +273,10 @@
         <x-slot name="modal_title">Tambah Barang Keluar</x-slot>
         <x-slot name="modal_body">
             <div class="row">
+                <div class="col-sm-12 col-md-12 mb-3">
+                    <label for="date_start">Tanggal</label>
+                    <input type="date" class="form-control" name="date_start" id="date_start" placeholder="Tanggal">
+                </div>
                 <div class="col-sm-6 col-md-6 mb-3">
                     <label for="items">Nama Barang</label>
                     <div class="form-group">
@@ -286,6 +295,10 @@
                         <input type="text" class="form-control" placeholder="Qty" name="qty" id="qty">
                         <span class="input-group-text" id="unit">Unit</span>
                     </div>
+                </div>
+                <div class="col-sm-12 mb-3">
+                    <label for="description">Keterangan</label>
+                    <textarea class="form-control" name="description" id="description" cols="30" rows="2"></textarea>
                 </div>
                 <div class="col-sm-12">
                     <button class="btn btn-primary d-flex ms-auto" id="adds">Tambahkan</button>

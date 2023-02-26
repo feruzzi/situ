@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\ItemLog;
+use App\Models\ListLog;
 use Illuminate\Http\Request;
 
 class ItemLogController extends Controller
@@ -18,7 +19,7 @@ class ItemLogController extends Controller
     {
         $username = User::where('username', 'test')->first();
         $company_id = $username->companies->company_id;
-        $data = ItemLog::with('items')->where('company_id', $company_id)->get();
+        $data = ItemLog::with('list_items.items')->where('company_id', $company_id)->get();
         return response()->json([
             'status' => 200,
             'message' => "Data ditemukan",
@@ -43,13 +44,18 @@ class ItemLogController extends Controller
                 'log_id' => $log_id,
                 'item_id' => $item['id'],
                 'qty' => $item['qty'],
-                'date_start' => date('Y-m-d'),
-                'officer' => 'test',
-                'company_id' => $company_id
             ];
         }
         // dd($data);
-        ItemLog::insert($data);
+        $data_log = [
+            'log_id' => $log_id,
+            'description' => $request->description,
+            'date_start' => $request->date_start,
+            'officer' => 'test',
+            'company_id' => $company_id
+        ];
+        ItemLog::create($data_log);
+        ListLog::insert($data);
     }
 
     /**

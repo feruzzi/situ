@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ItemLog extends Model
+class ListLog extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    public function list_items()
+    public function items()
     {
-        return $this->hasMany(ListLog::class, 'log_id', 'log_id');
+        return $this->belongsTo(Item::class, 'item_id', 'item_id');
     }
 }
