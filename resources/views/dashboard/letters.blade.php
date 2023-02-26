@@ -182,13 +182,13 @@
                     })
                 })
             })
-            $(document).on('click', ".upload-m-letter", function(e) {
+            $(document).off('click', '.upload-m-letter').on('click', '.upload-m-letter', function() {
                 var id = $(this).data('id');
                 var name = $(this).data('name');
                 $('#upload-modal').modal('show');
                 $("#upload-preview").text(name)
                 $(document).ready(function() {
-                    $('#uploadForm').submit(function(event) {
+                    $(document).off('submit', '#uploadForm').on('submit', '#uploadForm', function() {
                         event.preventDefault();
                         var formData = new FormData();
                         formData.append('file_path', $('input[name="file_path"]')[0].files[0]);
