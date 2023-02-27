@@ -42,7 +42,7 @@
                             var x = [];
                             data.list_items.map((curr, i) => {
                                 x[i] =
-                                    `<span class="badge bg-secondary">${curr.items.name} @${curr.qty} ${curr.items.unit}</span>`
+                                    `<span class="badge bg-secondary c-pointer">${curr.items.name} @${curr.qty} ${curr.items.unit}</span>`
                             })
                             return x;
                         }
@@ -56,7 +56,7 @@
                             return `
                             <div class="d-flex">
                                 <button class="btn btn-sm icon btn-warning me-2 edit-m-item" data-id=${data.id}><i class="dripicons dripicons-document-edit"></i></button>
-                                <button class="btn btn-sm icon btn-danger delete-m-item" data-id=${data.id} data-name=${data.name}><i class="dripicons dripicons-trash"></i></button>
+                                <button class="btn btn-sm icon btn-danger delete-m-item" data-id=${data.id} data-name=${data.log_id}><i class="dripicons dripicons-trash"></i></button>
                             </div>`
                         }
                     },
@@ -82,7 +82,7 @@
                             <td>${curr.id}</td>
                             <td>${curr.name}</td>
                             <td>${curr.qty}</td>
-                            <td><div class="icon dripicons dripicons-cross del-list"></div></td>
+                            <td><div class="icon dripicons dripicons-cross del-list" data-id="${i}"></div></td>
                         </tr>                       
                         `);
                 })
@@ -136,6 +136,11 @@
                         })
                         render_table(items)
                     })
+                })
+                $(document).off('click', '.del-list').on('click', '.del-list', function() {
+                    var id = $(this).data('id')
+                    items.splice(id, 1)
+                    render_table(items)
                 })
             })
             $("#item").on("change", function(e) {
@@ -210,21 +215,21 @@
                 })
 
             })
-            $(document).on('click', ".delete-m-letter", function(e) {
+            $(document).on('click', ".delete-m-item", function(e) {
                 var id = $(this).data('id');
                 var name = $(this).data('name');
                 console.log(id)
                 $('#delete-modal').modal('show');
-                $("#letter-preview").text(name)
+                $("#item-preview").text(name)
                 $(document).off('click', '.confirm-delete').on('click', '.confirm-delete', function() {
                     $.ajax({
                         type: 'DELETE',
-                        url: 'api/master-letter/destroy/' + id,
+                        url: 'api/item/destroy-out/' + id,
                         success: function(res) {
                             console.log('del');
                             toastSuccess(res.message);
                             $('#delete-modal').modal('hide');
-                            $("#master-surat").DataTable().ajax.reload();
+                            $("#item-outs").DataTable().ajax.reload();
                         }
                     })
                 })
@@ -349,9 +354,9 @@
         </x-slot>
     </x-modal>
     <x-modal id="delete-modal" class="danger confirm-delete" fnc="">
-        <x-slot name="modal_title">Hapus Surat</x-slot>
+        <x-slot name="modal_title">Hapus Data Barang Keluar</x-slot>
         <x-slot name="modal_body">
-            <p>Yakin untuk menghapus data surat <b id="letter-preview"></b></p>
+            <p>Yakin untuk menghapus data barang keluar <b id="item-preview"></b> ?</p>
         </x-slot>
         <x-slot name="modal_action">
             Hapus

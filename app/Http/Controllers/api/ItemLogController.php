@@ -91,4 +91,14 @@ class ItemLogController extends Controller
     {
         //
     }
+    public function destroy_item_outs($id)
+    {
+        $item_log = ItemLog::find($id);
+        $item_log->list_items()->delete();
+        $item_log->delete();
+        return response()->json([
+            "status" => 200,
+            "message" => "Data Berhasil dihapus",
+        ]);
+    }
 }

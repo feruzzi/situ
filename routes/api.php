@@ -44,3 +44,4 @@ Route::delete('master-item/destroy/{id}', [ItemController::class, 'destroy']);
 
 Route::get('item-log', [ItemLogController::class, 'index']);
 Route::post('item/store-out', [ItemLogController::class, 'store_item_out']);
+Route::delete('item/destroy-out/{id}', [ItemLogController::class, 'destroy_item_outs']);
